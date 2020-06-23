@@ -100,14 +100,15 @@ var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중
 
 //격자 그리기
 var positions =[
-{var sw = new kakao.maps.LatLng(36.7653007507324, 127.43699645996), ne = new kakao.maps.LatLng(36.7831993103027, 127.458999633789)}, 
-{var sw = new kakao.maps.LatLng(36.7652015686035, 127.458999633789), ne = new kakao.maps.LatLng(36.7831001281738, 127.4820022583)}
+{sw: new kakao.maps.LatLng(36.7653007507324, 127.43699645996), ne: new kakao.maps.LatLng(36.7831993103027, 127.458999633789)}, 
+{sw: new kakao.maps.LatLng(36.7652015686035, 127.458999633789), ne: new kakao.maps.LatLng(36.7831001281738, 127.4820022583)}
 ];
 
 for (var i = 0; i < positions.length; i ++) {
 // 사각형을 구성하는 영역정보를 생성합니다
 // 사각형을 생성할 때 영역정보는 LatLngBounds 객체로 넘겨줘야 합니다
-var rectangleBounds = new kakao.maps.LatLngBounds(positions[i]);
+var sw = positions[i].sw, ne = positions[i].sw;
+var rectangleBounds = new kakao.maps.LatLngBounds(sw, ne);
 
 // 지도에 표시할 사각형을 생성합니다
 var rectangle = new kakao.maps.Rectangle({
