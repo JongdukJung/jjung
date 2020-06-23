@@ -55,8 +55,7 @@ if (navigator.geolocation) {
         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
         // 마커와 인포윈도우를 표시합니다
-		marker.setMap(null); 
-        displayMarker(locPosition, message);
+		displayMarker(locPosition, message);
             
       });
     
@@ -99,6 +98,33 @@ var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중
         message = '청주시';
         displayMarker(locPosition, message);
 }
+
+//격자 그리기
+var positions =[
+{var sw = new kakao.maps.LatLng(33.448842, 126.570379), ne = new kakao.maps.LatLng(33.450026,  126.568556)}, 
+{var sw = new kakao.maps.LatLng(33.448842, 126.570379), ne = new kakao.maps.LatLng(33.450026,  126.568556)}
+];
+
+for (var i = 0; i < positions.length; i ++) {
+// 사각형을 구성하는 영역정보를 생성합니다
+// 사각형을 생성할 때 영역정보는 LatLngBounds 객체로 넘겨줘야 합니다
+var rectangleBounds = new kakao.maps.LatLngBounds(positions);
+
+// 지도에 표시할 사각형을 생성합니다
+var rectangle = new kakao.maps.Rectangle({
+    bounds: rectangleBounds, // 그려질 사각형의 영역정보입니다
+    strokeWeight: 4, // 선의 두께입니다
+    strokeColor: '#FF3DE5', // 선의 색깔입니다
+    strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+    strokeStyle: 'shortdashdot', // 선의 스타일입니다
+    fillColor: '#FF8AEF', // 채우기 색깔입니다
+    fillOpacity: 0.8 // 채우기 불투명도 입니다
+});
+}
+
+// 지도에 사각형을 표시합니다
+rectangle.setMap(map);
+
 </script>
 </body>
 </html>
