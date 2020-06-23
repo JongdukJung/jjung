@@ -392,7 +392,7 @@ var recbounds = [
 {sw: new kakao.maps.LatLng(36.4225006103515, 127.524002075195), ne: new kakao.maps.LatLng(36.4403991699218, 127.545997619628)},
 {sw: new kakao.maps.LatLng(36.4047012329101, 127.478996276855), ne: new kakao.maps.LatLng(36.4225997924804, 127.501998901367)},
 {sw: new kakao.maps.LatLng(36.4045982360839, 127.501998901367), ne: new kakao.maps.LatLng(36.4225006103515, 127.524002075195)}
-]
+];
 for (var i = 0; i < recbounds.length; i ++) {
 // 사각형을 생성할 때 영역정보는 LatLngBounds 객체로 넘겨줘야 합니다
 
@@ -412,7 +412,7 @@ var rectangle = new kakao.maps.Rectangle({
 });
 // 지도에 사각형을 표시합니다
 rectangle.setMap(map);
-}
+};
 
 
 
@@ -733,7 +733,7 @@ for (var i = 0; i < positions.length; i ++) {
         text : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
         image : markerImage // 마커 이미지 
     });
-}
+};
 
 
 </script>
