@@ -37,6 +37,7 @@ var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중
  </script> 
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
+<button onclick="chungju()">청주시</button> 
 
 </p>
 
@@ -93,7 +94,12 @@ function displayMarker(locPosition, message) {
 	map.setCenter(locPosition);      
 }    
 //------------------------------------------
-
+// 청주시로 이동
+function chungju(){
+var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중심좌표(청주)
+        message = '청주시';
+        displayMarker(locPosition, message);
+}
 </script>
 </body>
 </html>
