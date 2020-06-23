@@ -47,14 +47,11 @@ if (navigator.geolocation) {
         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
             message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
         // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
-            
       });
     
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중심좌표(청주)
         message = '현재 위치를 알 수 없습니다';
-        displayMarker(locPosition, message);
 }
 
  
