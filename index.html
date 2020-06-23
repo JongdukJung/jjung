@@ -70,7 +70,7 @@ function displayMarker(locPosition, message) {
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 
     // 마커를 생성합니다
-    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/current.png', // 마커이미지의 주소입니다   
+    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/current.png'; // 마커이미지의 주소입니다   
     // 마커 이미지의 이미지 크기 입니다
     var imageSize = new kakao.maps.Size(12, 17); 
     
@@ -429,11 +429,6 @@ rectangle.setMap(map);
 };
 
 
-
-
-
-
-
 // 마커를 표시할 위치와 title 객체 배열입니다 
 var positions = [
     {title: '1', latlng: new kakao.maps.LatLng(36.774299621582, 127.447998046875)},
@@ -730,7 +725,6 @@ var positions = [
 ];
 
 // 마커 이미지의 이미지 주소입니다
-var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
     
 for (var i = 0; i < positions.length; i ++) {
     
