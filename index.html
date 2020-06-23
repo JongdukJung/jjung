@@ -79,7 +79,8 @@ else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치�
     infowindow.open(map, marker);
     
     // 지도 중심좌표를 접속위치로 변경합니다
-    map.setCenter(locPosition);      
+    map.setMarker(locPosition);      
+	map.setCenter(locPosition);      
 }    
 //------------------------------------------
 
