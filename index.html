@@ -36,7 +36,7 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 <script>  
    
 function displayMarker(locPosition, message) {
-marker.setMap(null); 
+
 //----------------------------------------------------------------
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
@@ -65,7 +65,11 @@ if (navigator.geolocation) {
         map: map, 
         position: locPosition
     }); 
-    
+    marker.setMap(null); 
+	var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
     var iwContent = message, // 인포윈도우에 표시할 내용
         iwRemoveable = false;
 
