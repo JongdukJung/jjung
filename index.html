@@ -98,7 +98,11 @@ var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중
         message = '청주시';
         displayMarker(locPosition, message);
 }
-function removemarker(){
+function removemarker(locPosition){
+	var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    }); 
 marker.setMap(null);
 }
 
