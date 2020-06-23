@@ -30,14 +30,12 @@ var mapTypeControl = new kakao.maps.MapTypeControl();
 // kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
 map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
     
-var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중심좌표(청주)
-        message = '청주시';
-        displayMarker(locPosition, message);
+chungju();
 		
  </script> 
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
-<button onclick="chungju()">청주시</button> 
+<button onclick="chungju()">청주시2</button> 
 
 </p>
 
@@ -46,7 +44,7 @@ var locPosition = new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중
 
 function displayMarker2() {
 
-//marker.setMap(null); 
+marker.setMap(null); 
 //----------------------------------------------------------------
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
