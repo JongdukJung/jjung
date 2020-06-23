@@ -34,8 +34,10 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 <button onclick="displayMarker()">현재위치로 이동</button> 
 </p>
 <script>   
+function displayMarker(locPosition, message) {
 //----------------------------------------------------------------
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+
 if (navigator.geolocation) {
     
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -62,8 +64,6 @@ if (navigator.geolocation) {
 
  
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-
-function displayMarker(locPosition, message) {
 
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({  
