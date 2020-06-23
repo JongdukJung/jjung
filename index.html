@@ -67,7 +67,7 @@ else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치�
 }
 function displayMarker(locPosition, message) {
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
-
+marker.setMap(null);
     // 마커를 생성합니다
     
 	var marker = new kakao.maps.Marker({  
@@ -87,7 +87,7 @@ function displayMarker(locPosition, message) {
     infowindow.open(map, marker);
     
     // 지도 중심좌표를 접속위치로 변경합니다
-    //map.setMarker(locPosition);      
+    
 	map.setCenter(locPosition);      
 }    
 //------------------------------------------
