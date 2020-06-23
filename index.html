@@ -36,14 +36,15 @@ chungju();
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
 <button onclick="chungju()">청주시</button> 
+<button onclick="removemarker()">제거</button> 
 
 </p>
 
 <script>  
-marker.setMap(map);   
+ 
 
 function displayMarker2() {
-marker.setMap(null);
+
 //----------------------------------------------------------------
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
