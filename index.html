@@ -96,7 +96,7 @@ function displayMarker(locPosition) {
     
     // 지도 중심좌표를 접속위치로 변경합니다
     marker.setMap(map);
-	//map.setCenter(locPosition);      
+	map.setCenter(locPosition);      
 }    
 //------------------------------------------
 // 청주시로 이동
@@ -106,9 +106,9 @@ var locPosition = new kakao.maps.LatLng(36.645265, 127.465566); // 지도의 중
         displayMarker(locPosition);
 }
 function removemarker(locPosition){
-	var marker = new kakao.maps.Marker({  
-        map: map, 
-        position: locPosition
+//	var marker = new kakao.maps.Marker({  
+//        map: map, 
+//        position: locPosition
     }); 
 marker.setMap(null);
 }
