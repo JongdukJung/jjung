@@ -733,18 +733,30 @@ var positions = [
 
 // 마커 이미지의 이미지 주소입니다
     
-for (var i = 0; i < positions.length; i ++) {
+//for (var i = 0; i < positions.length; i ++) {
     
 
 	    // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        content : positions[i].title,
-		position: positions[i].latlng,
-        removable : false
-    });
+  //  var infowindow = new kakao.maps.InfoWindow({
+    //    content : positions[i].title,
+	//	position: positions[i].latlng,
+    //    removable : false
+    //});
     
     // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map);
+ //   infowindow.open(map);
+//};
+
+
+for (var i = 0; i < positions.length; i ++) {
+// 커스텀 오버레이를 생성합니다
+var customOverlay = new kakao.maps.CustomOverlay({
+    position: positions[i].latlng,
+    content: positions[i].title
+});
+
+// 커스텀 오버레이를 지도에 표시합니다
+customOverlay.setMap(map);
 };
 
 // 청주시 경계를 생성합니다
