@@ -39,6 +39,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     message += '경도는 ' + latlng.getLng() + ' 입니다';
     var resultDiv = document.getElementById('result'); 
     resultDiv.innerHTML = message;
+    displayMarker(latlng);
 });
 
 chungju();
