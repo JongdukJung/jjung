@@ -47,14 +47,14 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
 });
 
-var lat2 = latlng.getLat();
-    lat2=lat2.toFixed(6);
-    var lng2 = latlng.getLng();
-    lng2=lng2.toFixed(6);
-    var message2 = lat2 + ', ' + lng2;
-    var resultDiv2 = document.getElementById('result2'); 
-    resultDiv2.innerHTML = message2;
-    
+//var lat2 = latlng.getLat();
+//    lat2=lat2.toFixed(6);
+//    var lng2 = latlng.getLng();
+//    lng2=lng2.toFixed(6);
+//    var message2 = lat2 + ', ' + lng2;
+//    var resultDiv2 = document.getElementById('result2'); 
+//    resultDiv2.innerHTML = message2;
+
 chungju();
  </script> 
 <p>
@@ -62,7 +62,7 @@ chungju();
 <button onclick="chungju()">청주시</button>
 <a id="link">길 찾기</a>
 </p>
-<p id="result2"></p>
+<p id="result"></p>
 
 <script>  
  
