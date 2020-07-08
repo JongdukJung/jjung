@@ -39,6 +39,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     message += + latlng.getLng();
     var resultDiv = document.getElementById('result'); 
     resultDiv.innerHTML = message;
+    var link = 'https://map.kakao.com/link/to/목적지,'+ message;
+    document.getElementById("link").setAttribute("href",link);
     displayMarker3(latlng);
 });
 
@@ -49,7 +51,7 @@ chungju();
 <button onclick="chungju()">청주시</button>
 <button onclick= window.open('https://map.kakao.com/link/to/목적지,'& key = latlng)>길 찾기</button>
 <a href="https://map.kakao.com/link/to/목적지,'& key = latlng">길 찾기</a> 
-<a href="https://map.kakao.com/link/to/목적지," onclick="location.href=this.href+'?key='+latlng;return false;">Link</a>
+<a id="link">Link</a>
 </p>
 <p id="result"></p>
 
