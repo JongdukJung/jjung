@@ -39,23 +39,22 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     message += + latlng.getLng();
     var resultDiv = document.getElementById('result'); 
     resultDiv.innerHTML = message;
+    
     var link = 'https://map.kakao.com/link/to/목적지,'+ message;
     document.getElementById("link").setAttribute("href",link);
+
     displayMarker3(latlng);
-    
-    var lat2 = latlng.getLat();
-    lat2=lat2.toFixed(6);
-    var lng2 = latlng.getLng();
-    lng2=lng2.toFixed(6);
-    var message2 = lat2 + ', '+lng2;
-    var resultDiv2 = document.getElementById('result2'); 
-    resultDiv2.innerHTML = message2;
-
-
-
 
 });
 
+var lat2 = latlng.getLat();
+    lat2=lat2.toFixed(6);
+    var lng2 = latlng.getLng();
+    lng2=lng2.toFixed(6);
+    var message2 = lat2 + ', ' + lng2;
+    var resultDiv2 = document.getElementById('result2'); 
+    resultDiv2.innerHTML = message2;
+    
 chungju();
  </script> 
 <p>
