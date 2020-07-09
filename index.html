@@ -61,7 +61,7 @@ chungju();
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
 <button onclick="chungju()">청주시</button>
-<a id="link">길 찾기</a>
+<a id="link">길 찾기2</a>
 </p>
 <p id="result"></p>
 
@@ -110,7 +110,7 @@ function displayMarker(locPosition) {
 
 // 센터이동없이 마커 표시하기
 function displayMarker3(locPosition) {
-    var marker;
+    var marker = new kakao.maps.Marker();
     marker.setMap(null);
     var imageSrc = 'https://jongdukjung.github.io/jongdukjung/current.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
@@ -125,7 +125,6 @@ function displayMarker3(locPosition) {
 // 청주시로 이동
 function chungju(){
 var locPosition = new kakao.maps.LatLng(36.645265, 127.465566); // 지도의 중심좌표(청주)
-
 map.setCenter(locPosition);   
 }
 //marker.setMap(null);
