@@ -56,7 +56,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 //    resultDiv2.innerHTML = message2;
 
 chungju();
- </script> 
+ </script>
+
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
 <button onclick="chungju()">청주시</button>
@@ -66,23 +67,17 @@ chungju();
 
 <script>  
  
-
-function displayMarker2() {
-
 //----------------------------------------------------------------
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+function displayMarker2() {
 if (navigator.geolocation) {
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
         var lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-        //    message = '<div style="padding:5px;">현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-        // 마커와 인포윈도우를 표시합니다
-		displayMarker(locPosition);
-            
-      });
-    
+        displayMarker(locPosition);
+    });
 }
 else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     alert('현재 위치를 알 수 없습니다');
@@ -90,6 +85,8 @@ else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치�
         displayMarker(locPosition);
 }
 }
+
+// 마커 표시하고 센터 이동하기
 function displayMarker(locPosition) {
 // 지도에 마커와 인포윈도우를 표시하는 함수입니다
 
@@ -108,10 +105,12 @@ function displayMarker(locPosition) {
     }); 
      
     // 지도 중심좌표를 접속위치로 변경합니다
-
 	map.setCenter(locPosition);      
-}    
+}
+
+// 센터이동없이 마커 표시하기
 function displayMarker3(locPosition) {
+    marker.setMap(null);
     var imageSrc = 'https://jongdukjung.github.io/jongdukjung/current.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
@@ -121,20 +120,14 @@ function displayMarker3(locPosition) {
 		image: markerImage
     }); 
 }  
-//------------------------------------------
+
 // 청주시로 이동
 function chungju(){
 var locPosition = new kakao.maps.LatLng(36.645265, 127.465566); // 지도의 중심좌표(청주)
-      //  message = '청주시';
-        displayMarker(locPosition);
+
+map.setCenter(locPosition);   
 }
-//function removemarker(locPosition){
-//	var marker = new kakao.maps.Marker({  
-//        map: map, 
-//        position: locPosition
-//    }); 
 //marker.setMap(null);
-//}
 
 
 
@@ -754,31 +747,13 @@ var positions = [
 {title: '<h1>291</h1>', latlng: new kakao.maps.LatLng(36.4136009216308, 127.513000488281)}
 ];
 
-// 마커 이미지의 이미지 주소입니다
-    
-//for (var i = 0; i < positions.length; i ++) {
-    
-
-	    // 인포윈도우를 생성합니다
-  //  var infowindow = new kakao.maps.InfoWindow({
-    //    content : positions[i].title,
-	//	position: positions[i].latlng,
-    //    removable : false
-    //});
-    
-    // 인포윈도우를 마커위에 표시합니다 
- //   infowindow.open(map);
-//};
-
-
+//격자번호 표시하기
 for (var i = 0; i < positions.length; i ++) {
 // 커스텀 오버레이를 생성합니다
 var customOverlay = new kakao.maps.CustomOverlay({
     position: positions[i].latlng,
     content: positions[i].title
 });
-
-// 커스텀 오버레이를 지도에 표시합니다
 customOverlay.setMap(map);
 };
 
