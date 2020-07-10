@@ -17,9 +17,9 @@
     </style>
     
 </head>
-<h1>주소를 좌표로 변환</h1>
+<h2>주소를 좌표로 변환</h2>
 <body>
-
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3a7857a3bd564cf642a647203f178f40"></script>
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = { 
@@ -34,7 +34,7 @@
     <article>
         <br>
         <form method="get" action="">
-        주소목록 <input type ="text" name="addrlist" style="width:600px;height:150px;font-size:10px;">
+        주소목록<br><input type ="text" name="addrlist" style="width:600px;height:100px;font-size:10px;">
         </form><br>
         <button onclick="addr2coord()">변환</button> <br>
         <table>
