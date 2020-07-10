@@ -21,7 +21,24 @@
 
 <h2>주소를 좌표로 변환</h2>
 <body>
-    <div id="map" style="margin: 0px; width:100%; height:300px;"></div>
+<article>
+    <form method="get" action="">
+        주소목록<br><input type ="text" name="addrlist" style="width:600px;height:100px;font-size:10px;">
+        </form><br>
+        <button onclick="addr2coord()">변환</button> <br>
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>입력주소</th>
+              <th>위도</th>
+              <th>경도</th>
+              <th>표시</th>
+            </tr>
+          </thead>              
+    
+
+    <div id="map" style="margin: 0px; width:100%; height:600px;"></div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3a7857a3bd564cf642a647203f178f40&libraries=services"></script>
     <script>
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -34,26 +51,16 @@
         map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
     </script>        
 
+<script>
+
+            function addr2coord('addrlist'){
+//입력값 받아오기
+                document.write('addrlist');  
+            }
+
+</script>
 
 
-
-
-<article>
-    <br>
-    <form method="get" action="">
-    주소목록<br><input type ="text" name="addrlist" style="width:600px;height:100px;font-size:10px;">
-    </form><br>
-    <button onclick="addr2coord()">변환</button> <br>
-    <table>
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>입력주소</th>
-          <th>위도</th>
-          <th>경도</th>
-          <th>표시</th>
-        </tr>
-      </thead>              
 </article>
 </body>
 </html>
