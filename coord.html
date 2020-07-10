@@ -17,12 +17,24 @@
     </style>
     
 </head>
+<h1>주소를 좌표로 변환</h1>
 <body>
+
+    <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(36.645265, 127.465566), // 지도의 중심좌표(청주)
+                level: 6 // 지도의 확대 레벨
+            };  
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+        var mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+    </script>        
 
     <article>
         <br>
         <form method="get" action="">
-        주소목록 <input type ="text" name="addrlist">
+        주소목록 <input type ="text" name="addrlist" style="width:600px;height:150px;font-size:10px;">
         </form><br>
         <button onclick="addr2coord()">변환</button> <br>
         <table>
@@ -39,7 +51,7 @@
      
             <script>
             //입력값 받아오기
-            function addrlist(){
+            function addr2coord(){
                 document.write("ok");  
             }
             document.getElementById("button").addEventListener('click', function () {
@@ -75,14 +87,6 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	3a7857a3bd564cf642a647203f178f40&libraries=services"></script>
 <script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
-
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
