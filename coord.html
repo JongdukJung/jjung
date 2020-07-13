@@ -75,6 +75,19 @@
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7857a3bd564cf642a647203f178f40&libraries=services"></script>
     <script>
+            document.getElementById("searchButton").addEventListener("click", searchButtonClickHandler);
+
+/* ############ 카카오 맵 API ############ */
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+mapOption = {
+    center: new kakao.maps.LatLng(37.546342, 127.192786), // 지도의 중심좌표(회사)
+    level: 6 // 지도의 확대 레벨
+};
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+/* ############ 카카오 맵 API ############ */
+
 
         //지오코딩 결과값 출력할 테이블태그 아이디
         const TABLE_ID = "resultTable"
@@ -86,18 +99,12 @@
         //html 로드완료 이벤트 함수
         function contentLoadedHandler(){
             //검색버튼 이벤트 설정
-            document.getElementById("searchButton").addEventListener("click", searchButtonClickHandler);
 
-            /* ############ 카카오 맵 API ############ */
-            var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-            mapOption = {
-                center: new kakao.maps.LatLng(37.546342, 127.192786), // 지도의 중심좌표(회사)
-                level: 6 // 지도의 확대 레벨
-            };
-            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-            var mapTypeControl = new kakao.maps.MapTypeControl();
-            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
-            /* ############ 카카오 맵 API ############ */
+
+
+
+
+
         }
 
         //검색버튼 이벤트 함수
@@ -127,7 +134,7 @@
                                     "<td>"+addrList[i].addr+"</td>"+
                                     "<td>"+addrList[i].y+"</td>"+
                                     "<td>"+addrList[i].x+"</td>"+
-                                    "<td><button onclick="displayMarker()">위치표시</button> </td>"+
+                                    //"<td><button onclick="displayMarker()">위치표시</button> </td>"+
                                 "</tr>";
 
             }
