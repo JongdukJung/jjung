@@ -60,7 +60,7 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th>이름</th>
+                        <th>이름2</th>
                         <th>입력주소</th>
                         <th>위도</th>
                         <th>경도</th>
@@ -91,7 +91,7 @@
             /* ############ 카카오 맵 API ############ */
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div
             mapOption = {
-                center: new kakao.maps.LatLng(37.546342, 127.192786), // 지도의 중심좌표(청주)
+                center: new kakao.maps.LatLng(37.546342, 127.192786), // 지도의 중심좌표(회사)
                 level: 6 // 지도의 확대 레벨
             };
             var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -128,9 +128,12 @@
             }
             tableContainer.innerHTML = tableRows;
         
-        // 지도에 출력
+
+        }
+
+                // 지도에 출력
         
-            for(var i in addrList){
+                for(var i in addrList){
 //                var lat = addrList[i].y, // 위도
 //                    lon = addrList[i].x; // 경도
                 //var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
@@ -146,7 +149,6 @@
                 
                // displayMarker3(locPosition);
             }
-        }
 
 
         //text -> Map Array
