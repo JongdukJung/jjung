@@ -120,10 +120,14 @@
                 tableRows +=    "<tr>"+
                                     "<td>"+addrList[i].index+"</td>"+
                                     "<td>"+addrList[i].addr+"</td>"+
-                                    "<td>"+addrList[i].x+"</td>"+
                                     "<td>"+addrList[i].y+"</td>"+
+                                    "<td>"+addrList[i].x+"</td>"+
                                     "<td><button type='button'>표시</button></td>"+
                                 "</tr>";
+                var lat = addrList[i].y, // 위도
+                    lon = addrList[i].x; // 경도
+                var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                displayMarker3(locPosition);
             }
             tableContainer.innerHTML = tableRows;
         }
@@ -171,6 +175,31 @@
             }
             
         }
+   
+        // 센터이동없이 마커 표시하기
+  function displayMarker3(locPosition) {
+    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/target.png';
+    var imageSize = new kakao.maps.Size(12, 12); 
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
+	  var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition,
+		    image: markerImage
+    }); 
+  }
+
+  // 마커 표시하고 센터 이동하기
+function displayMarker(locPosition) {
+    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/current.png';
+    var imageSize = new kakao.maps.Size(12, 12); 
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
+  	var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition,
+	    	image: markerImage
+    }); 
+  map.setCenter(locPosition);      
+}  
         
     </script>
 </body>
