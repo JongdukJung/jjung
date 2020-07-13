@@ -117,11 +117,6 @@
             console.log(addrList);
             var tableRows = "";
             for(var i in addrList){
-                var lat = addrList[i].y, // 위도
-                    lon = addrList[i].x; // 경도
-                var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                displayMarker3(locPosition);
-
                 tableRows +=    "<tr>"+
                                     "<td>"+addrList[i].index+"</td>"+
                                     "<td>"+addrList[i].addr+"</td>"+
@@ -132,7 +127,17 @@
 
             }
             tableContainer.innerHTML = tableRows;
+        
+        // 지도에 출력
+        
+            for(var i in addrList){
+                var lat = addrList[i].y, // 위도
+                    lon = addrList[i].x; // 경도
+                var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+                displayMarker3(locPosition);
+            }
         }
+
 
         //text -> Map Array
         function addrListParse(addrListTxt){
