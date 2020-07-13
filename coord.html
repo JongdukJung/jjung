@@ -136,20 +136,13 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
                                     "<td>"+addrList[i].x+"</td>"+
                                     //"<td><button onclick="displayMarker()">위치표시</button> </td>"+
                                 "</tr>";
-
-            }
-            tableContainer.innerHTML = tableRows;
-        
-
-        }
-
                 // 지도에 출력
         
 //                for(var i in addrList){
 //                var lat = addrList[i].y, // 위도
 //                    lon = addrList[i].x; // 경도
-                //var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-                var locPosition = new kakao.maps.LatLng(37.546342, 127.192786); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+//var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+//                var locPosition = new kakao.maps.LatLng(37.546342, 127.192786); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
                 var imageSrc = 'https://jongdukjung.github.io/jongdukjung/target.png';
                 var imageSize = new kakao.maps.Size(12, 12); 
                 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
@@ -158,9 +151,15 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
                     position: locPosition,
 		                image: markerImage
                 })
-                
-               // displayMarker3(locPosition);
- //           }
+
+
+            }
+            tableContainer.innerHTML = tableRows;
+        
+
+        }
+
+
 
 
         //text -> Map Array
