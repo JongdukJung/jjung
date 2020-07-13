@@ -117,12 +117,17 @@
             console.log(addrList);
             var tableRows = "";
             for(var i in addrList){
+
+                var lat = addrList[i].y, // 위도
+                    lon = addrList[i].x; // 경도
+                var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 얻어온 좌표로 생성합니다
+
                 tableRows +=    "<tr>"+
                                     "<td>"+addrList[i].index+"</td>"+
                                     "<td>"+addrList[i].addr+"</td>"+
                                     "<td>"+addrList[i].y+"</td>"+
                                     "<td>"+addrList[i].x+"</td>"+
-                                    "<td><button type='button'>표시</button></td>"+
+                                    "<td><button onclick="displayMarker()">위치표시</button> </td>"+
                                 "</tr>";
 
             }
