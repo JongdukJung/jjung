@@ -177,7 +177,8 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
             const i = 0;
             for(const i in coordList){
                 console.log(coordList[i], i);
-                geocoder.searchDetailAddrFromCoords(coordList[i].y, coordList[i].x, function(result, status){
+                var coords = new kakao.maps.LatLng(coordList[i].y, coordList[i].x)
+                geocoder.searchDetailAddrFromCoords(coords, function(result, status){
                     //정상처리되었을 때
                     if(status === kakao.maps.services.Status.OK){
                         coordList[i].road_address = result[0].road_address.address_name;
