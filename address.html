@@ -180,12 +180,13 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
                 console.log(coordList[i], i);
                 var coords = new kakao.maps.LatLng(coordList[i].y, coordList[i].x)
                 searchDetailAddrFromCoords(coords, function(result, status){
+                    console.log(result, i);
                     //정상처리되었을 때
                     if(status === kakao.maps.services.Status.OK){
                         coordList[i].roadAddr = result[0].road_address.address_name;
                         coordList[i].addr = result[0].address.address_name;
                         console.log(coordList[i],i);
-                        console.log(result, i);
+                    
                     }
                     count++;
 
