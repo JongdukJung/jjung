@@ -163,8 +163,8 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
                 var row = {};
                 const arrRow = txtRows[i].split("\t");
                 row.index = arrRow[0];
-                row.lat = arrRow[1];
-                row.lon = arrRow[2];
+                row.y = arrRow[1];
+                row.x = arrRow[2];
 
                 resultList.push(row);
             }
