@@ -183,7 +183,7 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
                     console.log(result, i);
                     //정상처리되었을 때
                     if(status === kakao.maps.services.Status.OK){
-                        coordList[i].roadAddr = result[0].road_address.address_name;
+                        //coordList[i].roadAddr = result[0].road_address.address_name;
                         coordList[i].addr = result[0].address.address_name;
                         console.log(coordList[i],i);
                     
