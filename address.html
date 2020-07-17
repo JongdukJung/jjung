@@ -77,11 +77,10 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7857a3bd564cf642a647203f178f40&libraries=services"></script>
     <script>
             document.getElementById("searchButton").addEventListener("click", searchButtonClickHandler);
-
+            var geocoder = new kakao.maps.services.Geocoder();
 /* ############ 카카오 맵 API ############ */
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-var geocoder = new kakao.maps.services.Geocoder();
-mapOption = {
+   mapOption = {
     center: new kakao.maps.LatLng(37.546342, 127.192786), // 지도의 중심좌표(회사)
     level: 6 // 지도의 확대 레벨
 };
