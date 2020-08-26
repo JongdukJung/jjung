@@ -75,7 +75,7 @@
                 <tbody></tbody>
             </table>
         </div>
-        <div id="map" style="margin: 0px; width:100%; height:900px;"></div>
+        <div id="map" style="margin: 0px; width:100%; height:800px;"></div>
      </article>
 
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7857a3bd564cf642a647203f178f40&libraries=services"></script>
@@ -112,6 +112,9 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
     message += + latlng.getLng();
     var resultDiv = document.getElementById('result'); 
     resultDiv.innerHTML = message;
+
+    var link = 'https://map.kakao.com/link/to/목적지,'+ message;
+    document.getElementById("link").setAttribute("href",link);
 
     displayMarker3(latlng);
 });
