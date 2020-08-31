@@ -87,6 +87,7 @@
 
         //text -> Map Array
         function plantlistParse(plantlistTxt){
+            var tableContainer = document.querySelector("#"+TABLE_ID+">tbody");
             var txtRows = plantlistTxt.split("\n");
             for(var i in txtRows){
                 //빈 행 제거
