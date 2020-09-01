@@ -119,7 +119,7 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
 // 센터이동없이 마커 표시하기
 function displayMarker3(locPosition) {
-    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/target.png'; // 마커이미지의 주소입니다   
+    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/target.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
 	var marker = new kakao.maps.Marker({  
@@ -166,7 +166,7 @@ function displayMarker3(locPosition) {
                                     "<td><button onclick='displayMarker("+lat+","+lon+")'>위치표시</button> </td>"+
                                 "</tr>";
                 // 지도에 출력
-                var imageSrc = 'https://jongdukjung.github.io/jongdukjung/target.png';
+                var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/target.png';
                 var imageSize = new kakao.maps.Size(12, 12); 
                 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
 	              var marker = new kakao.maps.Marker({  
@@ -240,7 +240,7 @@ function displayMarker3(locPosition) {
 
   // 마커 표시하고 센터 이동하기
 function displayMarker(lat, lon) {
-    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/current.png';
+    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/current.png';
     var imageSize = new kakao.maps.Size(12, 12); 
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
     var locPosition = new kakao.maps.LatLng(lat, lon);
