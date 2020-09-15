@@ -17,7 +17,7 @@
 <div id="map" style="margin: 0px; width:100%; height:80%;"></div>
     
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7857a3bd564cf642a647203f178f40"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3a7857a3bd564cf642a647203f178f40&libraries=services"></script>
 
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -158,7 +158,7 @@ var reader = new XMLHttpRequest();
     function coordListParse(coordListTxt){
 console.log('2');
         var txtRows = coordListTxt.split("\n");
-console.log('3');
+        var txtRows = coordListTxt.split("\n");
         var resultList = [];
         for(var i in txtRows){
     //빈 행 제거
