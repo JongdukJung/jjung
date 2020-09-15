@@ -126,7 +126,20 @@ function displayMarker3(locPosition) {
     });
 }  
 
-
+// 한 줄씩 배열에 저장
+function coordListParse(coordListTxt){
+console.log('2');
+        
+        var txtRows = coordListTxt.split("\n");
+        var resultList = [];
+        for(var i in txtRows){
+    //빈 행 제거
+            if(txtRows[i] == "") continue;
+            resultList.push(txtRows[i]);
+            console.log('4');
+    };
+    return resultList;
+        };
 
 
 // 번호를 표시할 위치와 title 객체 배열입니다 
@@ -155,19 +168,7 @@ var reader = new XMLHttpRequest();
 	};
     reader.send(null);
 
-    function coordListParse(coordListTxt){
-console.log('2');
-        
-        var txtRows = coordListTxt.split("\n");
-        var resultList = [];
-        for(var i in txtRows){
-    //빈 행 제거
-            if(txtRows[i] == "") continue;
-            resultList.push(txtRows[i]);
-            console.log('4');
-    };
-    return resultList;
-        }
+    
 
 
 // 격자 배열입니다.
