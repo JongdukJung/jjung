@@ -153,6 +153,8 @@ var reader = new XMLHttpRequest();
 			console.log('aa');
 		//};
 	};
+    reader.send(null);
+
     var txtRows = reader.split("\n");
             var resultList = [];
             for(var i in txtRows){
@@ -160,7 +162,7 @@ var reader = new XMLHttpRequest();
                 if(txtRows[i] == "") continue;
                 resultList.push(txtRows[i]);
             };
-//reader.send(null);
+
 
 // 격자 배열입니다.
 var polygonPaths2 = resultList;
