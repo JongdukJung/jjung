@@ -150,18 +150,20 @@ var reader = new XMLHttpRequest();
 	reader.overrideMimeType('text/plain; charset=utf-8');
 	reader.onload = function() {
 		//if (reader.status == 200) {
-			console.log('aa');
+			console.log('1');
 		//};
 	};
     reader.send(null);
-
+console.log('2');
     var txtRows = reader.split("\n");
-            var resultList = [];
-            for(var i in txtRows){
-                //빈 행 제거
-                if(txtRows[i] == "") continue;
-                resultList.push(txtRows[i]);
-            };
+console.log('3');
+    var resultList = [];
+    for(var i in txtRows){
+    //빈 행 제거
+        if(txtRows[i] == "") continue;
+        resultList.push(txtRows[i]);
+        console.log('4');
+    };
 
 
 // 격자 배열입니다.
