@@ -153,25 +153,26 @@ var customOverlay = new kakao.maps.CustomOverlay({
 customOverlay.setMap(map);
 };
 
-const COORDLIST='';
 var reader = new XMLHttpRequest();
     reader.open('GET', '/jongdukjung/tools/data/a.txt', true);
     reader.overrideMimeType('text/plain; charset=utf-8');
-    reader.onload = function() {
+    //reader.onload = function() {
 		if (reader.status == 200) {
             console.log(reader.responseText);
             console.log('1');
-            COORDLIST = reader.responseText;
-		};
-	};
-    reader.send(null);
+            coordList = reader.responseText;
+        };
+    //    return coordList;
+    //};
+    
+    //reader.send(null);
     console.log('1');
-    console.log(COORDLIST);
+    console.log(coordList);
 
 
 // 격자 배열입니다.
 var polygonPaths2 = [];
-polygonPaths2 = coordListParse(COORDLIST);
+polygonPaths2 = coordListParse(coordList);
 
 
 //var polygonPaths2 = [
