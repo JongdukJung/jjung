@@ -153,15 +153,17 @@ var customOverlay = new kakao.maps.CustomOverlay({
 customOverlay.setMap(map);
 };
 
-var coordList = new XMLHttpRequest();
-    coordList.open('GET', '/jongdukjung/tools/data/a.txt', true);
-    coordList.overrideMimeType('text/plain; charset=utf-8');
-    coordList.onload = function() {
+var reader = new XMLHttpRequest();
+    reader.open('GET', '/jongdukjung/tools/data/a.txt', true);
+    reader.overrideMimeType('text/plain; charset=utf-8');
+    reader.onload = function() {
 		if (reader.status == 200) {
-			console.log(coordList);
+            console.log(reader.responseText);
+            var coordList = reader.responseText;
 		};
 	};
-    coordList.send(null);
+    reader.send(null);
+    console.log(coordList);
 
 
 // 격자 배열입니다.
