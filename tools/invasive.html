@@ -158,7 +158,7 @@ var coordList = new XMLHttpRequest();
     coordList.overrideMimeType('text/plain; charset=utf-8');
     coordList.onload = function() {
 		//if (reader.status == 200) {
-			console.log('1');
+			console.log(coordList);
 		//};
 	};
     coordList.send(null);
@@ -188,10 +188,6 @@ var polygon = new kakao.maps.Polygon({
 polygon.setMap(map);
 };
 
-const NAME_POSITIONS = [
-{title: '<h3>J_2860</h3>', latlng: new kakao.maps.LatLng(35.2568259135, 128.272777665)},
-{title: '<h3>J_2861</h3>', latlng: new kakao.maps.LatLng(35.2566087448, 128.27363347)},
-];
 
 </script>
 </body>
