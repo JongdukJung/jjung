@@ -89,7 +89,7 @@ function coordListParse(coordList){
             if(txtRows[i] == "") continue;
             resultList.push(txtRows[i]);
             console.log('4');
-    };
+        };
     return resultList;
 };
 //---------------------------------------------------------------------------------------
@@ -153,19 +153,19 @@ var customOverlay = new kakao.maps.CustomOverlay({
 customOverlay.setMap(map);
 };
 
-var reader = new XMLHttpRequest();
-	reader.open('GET', '/jongdukjung/tools/data/a.txt', true);
-	reader.overrideMimeType('text/plain; charset=utf-8');
-	reader.onload = function() {
+var coordList = new XMLHttpRequest();
+    coordList.open('GET', '/jongdukjung/tools/data/a.txt', true);
+    coordList.overrideMimeType('text/plain; charset=utf-8');
+    coordList.onload = function() {
 		//if (reader.status == 200) {
 			console.log('1');
 		//};
 	};
-    reader.send(null);
+    coordList.send(null);
 
 
 // 격자 배열입니다.
-var polygonPaths2 = coordListParse(reader);
+var polygonPaths2 = coordListParse(coordList);
 
 
 //var polygonPaths2 = [
