@@ -157,9 +157,9 @@ var coordList = new XMLHttpRequest();
     coordList.open('GET', '/jongdukjung/tools/data/a.txt', true);
     coordList.overrideMimeType('text/plain; charset=utf-8');
     coordList.onload = function() {
-		//if (reader.status == 200) {
+		if (reader.status == 200) {
 			console.log(coordList);
-		//};
+		};
 	};
     coordList.send(null);
 
