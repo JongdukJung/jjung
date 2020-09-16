@@ -156,14 +156,15 @@ customOverlay.setMap(map);
 var reader = new XMLHttpRequest();
     reader.open('GET', '/jongdukjung/tools/data/a.txt', true);
     reader.overrideMimeType('text/plain; charset=utf-8');
-    //reader.onload = function() {
+    reader.onload = function() {
 		if (reader.status == 200) {
             console.log(reader.responseText);
             console.log('1');
             coordList = reader.responseText;
         };
-    //    return coordList;
-    //};
+        return coordList;
+    };
+    coordList=reader.onload;
     
     //reader.send(null);
     console.log('1');
