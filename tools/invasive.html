@@ -80,18 +80,32 @@ var locPosition = new kakao.maps.LatLng(35.18743678324219, 128.3086201888794); /
 map.setCenter(locPosition);   
 }
 
-// 한 줄씩 배열에 저장
-function coordListParse(coordList){
-        var txtRows = coordList.split("\n");
-        var resultList = [];
-        for(var i in txtRows){
-    //빈 행 제거
-            if(txtRows[i] == "") continue;
-            resultList.push(txtRows[i]);
-            console.log('4');
-        };
-    return resultList;
-};
+// 지도에 표시할 다각형을 생성합니다
+function drawPolygon(polygonPaths2){
+    for (var i = 0; i < polygonPaths2.length; i ++) {
+        var polygon = new kakao.maps.Polygon({
+            path: polygonPaths2[i], // 그려질 다각형의 좌표 배열입니다
+            strokeWeight: 1, // 선의 두께입니다
+            strokeColor: '#FFFF00', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            fillColor: '#A2FF99', // 채우기 색깔입니다
+            fillOpacity: 0 // 채우기 불투명도 입니다
+        });
+        // 지도에 다각형을 표시합니다
+        polygon.setMap(map);
+    };
+}
+//지도에 텍스트 표시하기
+function drawText(coordList){
+    for (var i = 0; i < coordList.length; i ++) {
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: coordList[i].latlng,
+            content: coordList[i].title
+        });
+        customOverlay.setMap(map);
+    };
+}
+
 //---------------------------------------------------------------------------------------
 
 
@@ -130,7 +144,6 @@ chungju();
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
 <button onclick="chungju()">D구역 중심지</button>
-<button id="polygonNameBtn" onclick="polygonNameClickHandler()">폴리곤이름 켜기</button>
 <a id="link">길 찾기</a>
 </p>
 <p id="result"></p>
@@ -143,48 +156,47 @@ const NUM_POSITIONS = [
 
 ];
 
-//격자번호 표시하기
-for (var i = 0; i < NUM_POSITIONS.length; i ++) {
-    // 커스텀 오버레이를 생성합니다
-    var customOverlay = new kakao.maps.CustomOverlay({
-        position: NUM_POSITIONS[i].latlng,
-        content: NUM_POSITIONS[i].title
-    });
-    customOverlay.setMap(map);
-};
 
-var reader = new XMLHttpRequest();
-reader.open('GET', '/jongdukjung/tools/data/a.txt', true);
-reader.overrideMimeType('text/plain; charset=utf-8');
-reader.onload = function() {
-    //요청 성공 시
-    if (reader.status == 200) {
-        console.log("reader.responseText : ", reader.responseText);
-        // 격자 배열입니다. = polygonPaths2
-        var polygonPaths2 = eval(reader.responseText);
-        console.log("polygonPaths2 : ", polygonPaths2)
+//지도에 격자 표시하기
+var rectangle = new XMLHttpRequest();
+//rectangle.open('GET', '/jongdukjung/tools/data/rectangle.txt', true);
+rectangle.open('GET', '/data/rectangle.txt', true);
+rectangle.overrideMimeType('text/plain; charset=utf-8');
+rectangle.onload = function() {
+    if (rectangle.status == 200) {
+        var polygonPaths2 = eval(rectangle.responseText);
         drawPolygon(polygonPaths2);
     };
 };
-reader.send(null);
+rectangle.send(null);
 
-
-
-// 지도에 표시할 다각형을 생성합니다
-function drawPolygon(polygonPaths2){
-    for (var i = 0; i < polygonPaths2.length; i ++) {
-        var polygon = new kakao.maps.Polygon({
-            path: polygonPaths2[i], // 그려질 다각형의 좌표 배열입니다
-            strokeWeight: 1, // 선의 두께입니다
-            strokeColor: '#FFFF00', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            fillColor: '#A2FF99', // 채우기 색깔입니다
-            fillOpacity: 0 // 채우기 불투명도 입니다
-        });
-        // 지도에 다각형을 표시합니다
-        polygon.setMap(map);
+//격자번호 표시하기
+var pointText1 = new XMLHttpRequest();
+pointText1.open('GET', '/jongdukjung/tools/data/point1.txt', true);
+pointText1.overrideMimeType('text/plain; charset=utf-8');
+pointText1.onload = function() {
+    if (pointText1.status == 200) {
+        var coordList1 = eval(pointText1.responseText);
+        drawText(coordList1);
     };
-}
+};
+pointText1.send(null);
+
+
+//점과 텍스트 표시
+var pointText2 = new XMLHttpRequest();
+pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
+pointText2.overrideMimeType('text/plain; charset=utf-8');
+pointText2.onload = function() {
+    if (pointText2.status == 200) {
+        var coordList2 = eval(pointText2.responseText);
+        drawPoint(coordList2);
+        drawText(coordList2);
+    };
+};
+pointText2.send(null);
+
+
 
 
 </script>
