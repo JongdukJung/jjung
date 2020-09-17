@@ -34,7 +34,7 @@ function displayMarker2() {
     }
     else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     alert('현재 위치를 알 수 없습니다');
-	var locPosition = new kakao.maps.LatLng(36.54694829819862, 126.8047735227681); // 지도의 중심좌표(D구역 중심)
+	var locPosition = new kakao.maps.LatLng(36.54694829819862, 126.8047735227681); // 지도의 중심좌표(충남 중심)
         displayMarker(locPosition);
     }
 }
@@ -76,9 +76,9 @@ function displayMarker3(locPosition) {
         marker = null;
     });
 }  
-// D구역 중심시로 이동
+// 충남 중심시로 이동
 function chungju(){
-var locPosition = new kakao.maps.LatLng(36.54694829819862, 126.8047735227681); // 지도의 중심좌표(D구역 중심)
+var locPosition = new kakao.maps.LatLng(36.54694829819862, 126.8047735227681); // 지도의 중심좌표(충남 중심)
 map.setCenter(locPosition);   
 }
 
@@ -108,7 +108,7 @@ function drawText(coordList){
     };
 }
 function drawPoint(coordList){
-    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/current.png'; // 마커이미지의 주소입니다   
+    var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/yellow.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
     for (var i = 0; i < coordList.length; i ++) {
@@ -126,7 +126,7 @@ function drawPoint(coordList){
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(36.54694829819862, 126.8047735227681), // 지도의 중심좌표(D구역 중심)
+        center: new kakao.maps.LatLng(36.54694829819862, 126.8047735227681), // 지도의 중심좌표(충남 중심)
         level: 10 // 지도의 확대 레벨
     };  
 
@@ -158,7 +158,7 @@ chungju();
 
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
-<button onclick="chungju()">D구역 중심지</button>
+<button onclick="chungju()">충남 중심지</button>
 <a id="link">길 찾기</a>
 </p>
 <p id="result"></p>
@@ -174,8 +174,8 @@ const NUM_POSITIONS = [
 
 //지도에 격자 표시하기
 var rectangle = new XMLHttpRequest();
-//rectangle.open('GET', '/jongdukjung/tools/data/rectangle.txt', true);
-rectangle.open('GET', '/tools/data/rectangle.txt', true);
+rectangle.open('GET', '/jongdukjung/tools/data/rectangle.txt', true);
+//rectangle.open('GET', '/tools/data/rectangle.txt', true);
 rectangle.overrideMimeType('text/plain; charset=utf-8');
 rectangle.onload = function() {
     if (rectangle.status == 200) {
@@ -188,8 +188,8 @@ rectangle.send(null);
 
 //점과 텍스트 표시
 var pointText2 = new XMLHttpRequest();
-//pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
-pointText2.open('GET', '/tools/data/point2.txt', true);
+pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
+//pointText2.open('GET', '/tools/data/point2.txt', true);
 pointText2.overrideMimeType('text/plain; charset=utf-8');
 pointText2.onload = function() {
     if (pointText2.status == 200) {
@@ -202,8 +202,8 @@ pointText2.send(null);
 
 //격자번호 표시하기
 var pointText1 = new XMLHttpRequest();
-//pointText1.open('GET', '/jongdukjung/tools/data/point1.txt', true);
-pointText1.open('GET', '/tools/data/point1.txt', true);
+pointText1.open('GET', '/jongdukjung/tools/data/point1.txt', true);
+//pointText1.open('GET', '/tools/data/point1.txt', true);
 pointText1.overrideMimeType('text/plain; charset=utf-8');
 pointText1.onload = function() {
     if (pointText1.status == 200) {
