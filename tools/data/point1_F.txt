@@ -512,4 +512,5 @@
 {title: '<h3>F511</h3>', latlng: new kakao.maps.LatLng(35.9885321917, 127.482770348)},
 {title: '<h3>F512</h3>', latlng: new kakao.maps.LatLng(35.9884455598, 127.503839288)},
 {title: '<h3>F513</h3>', latlng: new kakao.maps.LatLng(35.9883552281, 127.524908136)}
+
 ]
