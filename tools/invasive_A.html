@@ -134,7 +134,7 @@ function drawPoint(coordList){
 }
 //---------------------------------------------------------------------------------------
 
-var mapCenter = new kakao.maps.LatLng(36.54694829819862, 126.8047735227681);
+var mapCenter = new kakao.maps.LatLng(36.83477882840061, 126.51751147005216);
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -170,18 +170,13 @@ moveCenter();
 
 <p>
 <button onclick="displayMarker2()">현재위치</button> 
-<button onclick="moveCenter()">충남 중심지</button>
+<button onclick="moveCenter()">A구역 중심지</button>
 <a id="link">길 찾기</a>
 </p>
 <p id="result"></p>
 
 <script>  
 //----------------------------------------------------------------
-// 번호를 표시할 위치와 title 객체 배열입니다 
-const NUM_POSITIONS = [
-{title: '<h1>D04</h1>', latlng: new kakao.maps.LatLng(35.2374999938, 128.287499914)},
-
-];
 
 
 //지도에 격자 표시하기
