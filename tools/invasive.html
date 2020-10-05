@@ -188,18 +188,18 @@ rectangle.send(null);
 
 
 //점과 텍스트 표시
-var pointText2 = new XMLHttpRequest();
-pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
+//var pointText2 = new XMLHttpRequest();
+//pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
 //pointText2.open('GET', '/tools/data/point2.txt', true);
-pointText2.overrideMimeType('text/plain; charset=utf-8');
-pointText2.onload = function() {
-    if (pointText2.status == 200) {
-        var coordList2 = eval(pointText2.responseText);
-        drawPoint(coordList2);
-        //drawText(coordList2);
-    };
-};
-pointText2.send(null);
+//pointText2.overrideMimeType('text/plain; charset=utf-8');
+//pointText2.onload = function() {
+//    if (pointText2.status == 200) {
+//        var coordList2 = eval(pointText2.responseText);
+//        drawPoint(coordList2);
+//        //drawText(coordList2);
+//    };
+//};
+//pointText2.send(null);
 
 //격자번호 표시하기
 var pointText1 = new XMLHttpRequest();
