@@ -157,23 +157,6 @@ kakao.maps.event.addListener(marker, 'dragend', function(mouseEvent) {
     toggleRoadview(position);
 });
 
-//지도에 클릭 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'click', function(mouseEvent){
-    
-    // 지도 위에 로드뷰 도로 오버레이가 추가된 상태가 아니면 클릭이벤트를 무시합니다 
-    if(!overlayOn) {
-        return;
-    }
-
-    // 클릭한 위치의 좌표입니다 
-    var position = mouseEvent.latLng;
-
-    // 마커를 클릭한 위치로 옮깁니다
-    marker.setPosition(position);
-
-    // 클락한 위치를 기준으로 로드뷰를 설정합니다
-    toggleRoadview(position);
-});
 
 /* ############ 카카오 맵 API ############ */
         //지오코딩 결과값 출력할 테이블태그 아이디
