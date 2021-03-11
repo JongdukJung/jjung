@@ -48,7 +48,7 @@
 
 
     </style>
-    <style> h2 {color : #FFF000; font-size: 10pt;} </style>
+    
 </head>
 <body>
     <header>
@@ -253,7 +253,7 @@ function displayMarker3(locPosition) {
                 var lat = coordList[i].y, // 위도
                     lon = coordList[i].x; // 경도
                 var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 얻어온 좌표로 생성합니다
-                var text2= "'<h2>"+coordList[i].index+"</h2>'";
+                var text2= "'"+coordList[i].index+"s'";
 
                 tableRows +=    "<tr>"+
                                     "<td>"+coordList[i].index+"</td>"+
