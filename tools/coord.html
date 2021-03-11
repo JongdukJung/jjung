@@ -247,8 +247,8 @@ function displayMarker3(locPosition) {
                 var lat = addrList[i].y, // 위도
                     lon = addrList[i].x; // 경도
                 var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 얻어온 좌표로 생성합니다
-                var text2= "'"+addrList[i].index+"'";
-
+                var text2= "'"+coordList[i].index+"'";
+               
                 tableRows +=    "<tr>"+
                                     "<td>"+addrList[i].index+"</td>"+
                                     "<td>"+addrList[i].addr+"</td>"+
@@ -263,14 +263,18 @@ function displayMarker3(locPosition) {
 	              var marker = new kakao.maps.Marker({  
                     map: map, 
                     position: locPosition,
-		                image: markerImage,
-                  
+                    image: markerImage               
                 })
-            }
+                var customOverlay = new kakao.maps.CustomOverlay({
+                                    position: locPosition,
+                                    content: text2
+                });
+                customOverlay.setMap(map);
+                };
             tableContainer.innerHTML = tableRows;
    
 
-        }
+        };
 
         //text -> Map Array
         function addrListParse(addrListTxt){
