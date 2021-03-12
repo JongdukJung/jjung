@@ -247,7 +247,7 @@ function displayMarker3(locPosition) {
                 var lat = addrList[i].y, // 위도
                     lon = addrList[i].x; // 경도
                 var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 얻어온 좌표로 생성합니다
-                var text2= "'"+coordList[i].index+"'";
+                var text2= "'"+addrList[i].index+"'";
                
                 tableRows +=    "<tr>"+
                                     "<td>"+addrList[i].index+"</td>"+
