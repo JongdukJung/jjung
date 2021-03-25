@@ -21,6 +21,7 @@
 <p>
     <button onclick="displayMarker2()">현재 위치</button> 
     <button onclick="moveCenter()">사천시청</button>
+    <button id="polygonNameBtn" onclick="polygonNameClickHandler()">폴리곤이름 켜기</button>
     <a id="link">길 찾기</a>
 </p>
 <p id="result"></p>
@@ -107,6 +108,7 @@ function drawText(coordList){
         customOverlay.setMap(map);
     };
 }
+//지도에 노란점 표시하기
 function drawPoint(coordList){
     var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/yellow.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
@@ -120,6 +122,45 @@ function drawPoint(coordList){
         //customOverlay.setMap(map);
     };
 }
+
+
+
+
+//폴리곤 이름 켜고 끄기
+function polygonNameClickHandler(){
+    console.log("polygonNameClickHandler() call")
+    if(polygonNameVisible == true){
+        offName();
+        polygonNameVisible = false;
+        document.getElementById("polygonNameBtn").innerText = "폴리곤이름 켜기";
+    }else if(polygonNameVisible == false){
+        onName();
+        polygonNameVisible = true;
+        document.getElementById("polygonNameBtn").innerText = "폴리곤이름 끄기";
+    };
+};
+function onName() {
+    console.log("onName() call")
+    for (var i = 0; i < coordList2.length; i ++) {
+        var customOverlay2 = new kakao.maps.CustomOverlay({
+            position: coordList2[i].latlng,
+            content: coordList2[i].title
+        });
+        customOverlay2.setMap(map);
+    };
+};
+function offName(){
+    console.log("offName() call")
+    for(var i in coordList2){
+        coordList2[i].setVisible(false);
+    }
+}
+
+
+
+
+
+
 //==============================================================================================
 //==============================================================================================
 
@@ -187,18 +228,17 @@ polygon1.onload = function() {
 };
 polygon1.send(null);
 
-// 폴리곤 텍스트 및 중심점 표시하기
+// 폴리곤 텍스트 및 중심점 표시하기(끄기 켜기 포함)
+var polygonNameVisible = false;
 var pointText2 = new XMLHttpRequest();
 pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
 pointText2.overrideMimeType('text/plain; charset=utf-8');
 pointText2.onload = function() {
     if (pointText2.status == 200) {
         var coordList2 = eval(pointText2.responseText);
-        drawText(coordList2);
-        drawPoint(coordList2);
     };
 };
-pointText2.send(null);
+
 </script>
 </body>
 </html>
