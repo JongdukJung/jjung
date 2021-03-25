@@ -193,6 +193,27 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     displayMarker3(latlng);
 });
 
+// 도시 경계 표시하기
+var boundary = new XMLHttpRequest();
+boundary.open('GET', '/jongdukjung/tools/data/sacheon_boundary.txt', true);
+boundary.overrideMimeType('text/plain; charset=utf-8');
+boundary.onload = function() {
+    if (boundary.status == 200) {
+        var boundaryPath = eval(boundary.responseText);
+        var polygon = new kakao.maps.Polygon({
+            path: boundaryPath, // 그려질 다각형의 좌표 배열입니다
+            strokeWeight: 3, // 선의 두께입니다
+            strokeColor: '#0404B4', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            fillOpacity: 0 // 채우기 불투명도 입니다
+        });
+        polygon.setMap(map);
+    };
+};
+
+
+
+
 //지도에 격자 표시하기
 var rectangle = new XMLHttpRequest();
 rectangle.open('GET', '/jongdukjung/tools/data/sacheon_rectangle.txt', true);
