@@ -123,7 +123,16 @@ function drawPoint(coordList){
     };
 }
 
-
+// 폴리곤 텍스트 및 중심점 표시하기(끄기 켜기 포함)
+var polygonNameVisible = false;
+var pointText2 = new XMLHttpRequest();
+pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
+pointText2.overrideMimeType('text/plain; charset=utf-8');
+pointText2.onload = function() {
+    if (pointText2.status == 200) {
+        var coordList2 = eval(pointText2.responseText);
+    };
+};
 
 
 //폴리곤 이름 켜고 끄기
@@ -228,16 +237,7 @@ polygon1.onload = function() {
 };
 polygon1.send(null);
 
-// 폴리곤 텍스트 및 중심점 표시하기(끄기 켜기 포함)
-var polygonNameVisible = false;
-var pointText2 = new XMLHttpRequest();
-pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
-pointText2.overrideMimeType('text/plain; charset=utf-8');
-pointText2.onload = function() {
-    if (pointText2.status == 200) {
-        var coordList2 = eval(pointText2.responseText);
-    };
-};
+
 
 </script>
 </body>
