@@ -123,6 +123,7 @@ function drawPoint(coordList){
     };
 }
 
+
 // 폴리곤 텍스트 및 중심점 표시하기(끄기 켜기 포함)
 var polygonNameVisible = false;
 var coordList2 =[];
@@ -141,14 +142,6 @@ function polygonNameClickHandler(){
 };
 function onName(coordList2) {
     console.log("onName() call")
-    var pointText2 = new XMLHttpRequest();
-    pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
-    pointText2.overrideMimeType('text/plain; charset=utf-8');
-    pointText2.onload = function() {
-    if (pointText2.status == 200) {
-        var coordList2 = eval(pointText2.responseText);
-    };
-   };
     for (var i = 0; i < coordList2.length; i ++) {
         var customOverlay2 = new kakao.maps.CustomOverlay({
             position: coordList2[i].latlng,
@@ -236,7 +229,15 @@ polygon1.onload = function() {
 };
 polygon1.send(null);
 
-
+// 폴리곤 이름 좌표 불러오기
+var pointText2 = new XMLHttpRequest();
+    pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
+    pointText2.overrideMimeType('text/plain; charset=utf-8');
+    pointText2.onload = function() {
+    if (pointText2.status == 200) {
+        var coordList2 = eval(pointText2.responseText);
+    };
+   };
 
 </script>
 </body>
