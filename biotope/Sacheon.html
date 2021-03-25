@@ -84,6 +84,18 @@ var locPosition = mapCenter; // 지도의 중심좌표(사천시청)
 map.setCenter(locPosition);   
 }
 
+// 도시 경계 그리기
+function drawBoundary(boundaryPath){
+    var polygon3 = new kakao.maps.Polygon({
+            path: boundaryPath, // 그려질 다각형의 좌표 배열입니다
+            strokeWeight: 3, // 선의 두께입니다
+            strokeColor: '#0404B4', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            fillOpacity: 0 // 채우기 불투명도 입니다
+        });
+        polygon3.setMap(map);
+}
+
 // 지도에 표시할 다각형을 생성합니다
 function drawPolygon(polygonPaths){
     for (var i = 0; i < polygonPaths.length; i ++) {
@@ -126,36 +138,70 @@ function drawPoint(coordList){
 
 // 폴리곤 텍스트 및 중심점 표시하기(끄기 켜기 포함)
 var polygonNameVisible = false;
-var coordList2 =[];
+var coordList2=[];
+
 //폴리곤 이름 켜고 끄기
 function polygonNameClickHandler(){
     console.log("polygonNameClickHandler() call")
     if(polygonNameVisible == true){
-        offName(coordList2);
+        offName();
         polygonNameVisible = false;
         document.getElementById("polygonNameBtn").innerText = "폴리곤이름 켜기";
     }else if(polygonNameVisible == false){
-        onName(coordList2);
+        onName();
         polygonNameVisible = true;
         document.getElementById("polygonNameBtn").innerText = "폴리곤이름 끄기";
     };
 };
-function onName(coordList2) {
-    console.log("onName() call")
-    for (var i = 0; i < coordList2.length; i ++) {
-        var customOverlay2 = new kakao.maps.CustomOverlay({
-            position: coordList2[i].latlng,
-            content: coordList2[i].title
-        });
-        customOverlay2.setMap(map);
+
+
+// 폴리곤 이름 좌표 불러오기
+var pointText3 = new XMLHttpRequest();
+pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
+//pointText3.open('GET', '/tools/data/sacheon_polygon_center.txt', true);
+pointText3.overrideMimeType('text/plain; charset=utf-8');
+pointText3.onload = function() {
+    if (pointText3.status == 200) {
+        coordList2 = eval(pointText3.responseText);
     };
 };
-function offName(coordList2){
+pointText3.send(null);
+
+var polygonNameArr = [];
+
+function onName() {
+    console.log("onName() call")
+    if(polygonNameArr.length == 0){
+        for (var i = 0; i < coordList2.length; i ++) {
+            // 커스텀 오버레이를 생성합니다
+            var customOverlay = new kakao.maps.CustomOverlay({
+                position: coordList2[i].latlng,
+                content: coordList2[i].title
+            });
+            customOverlay.setMap(map);
+            polygonNameArr.push(customOverlay);
+        };
+    } else if(polygonNameArr.length > 0) {
+        for(var i in polygonNameArr){
+            polygonNameArr[i].setVisible(true);
+        }
+    }
+};
+
+function offName(){
     console.log("offName() call")
-    for(var i in coordList2){
-        coordList2[i].setVisible(false);
+    if(polygonNameArr.length > 0) {
+        for(var i in polygonNameArr){
+            polygonNameArr[i].setVisible(false);
+        }
     }
 }
+
+
+
+
+
+
 
 
 
@@ -166,6 +212,8 @@ function offName(coordList2){
 //==============================================================================================
 
 var mapCenter = new kakao.maps.LatLng(35.00372875937058, 128.0640861930057);
+//var mapCenter = new kakao.maps.LatLng(37.49726247928668, 126.80585492261784);
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: mapCenter, // 지도의 중심좌표(사천시청)
@@ -196,24 +244,21 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 // 도시 경계 표시하기
 var boundary = new XMLHttpRequest();
 boundary.open('GET', '/jongdukjung/tools/data/sacheon_boundary.txt', true);
+//boundary.open('GET', '/tools/data/sacheon_boundary.txt', true);
 boundary.overrideMimeType('text/plain; charset=utf-8');
 boundary.onload = function() {
     if (boundary.status == 200) {
         var boundaryPath = eval(boundary.responseText);
-        var polygon = new kakao.maps.Polygon({
-            path: boundaryPath, // 그려질 다각형의 좌표 배열입니다
-            strokeWeight: 3, // 선의 두께입니다
-            strokeColor: '#0404B4', // 선의 색깔입니다
-            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
-            fillOpacity: 0 // 채우기 불투명도 입니다
-        });
-        polygon.setMap(map);
+        drawBoundary(boundaryPath); 
     };
 };
+boundary.send(null);
+
 
 //지도에 격자 표시하기
 var rectangle = new XMLHttpRequest();
 rectangle.open('GET', '/jongdukjung/tools/data/sacheon_rectangle.txt', true);
+//rectangle.open('GET', '/tools/data/sacheon_rectangle.txt', true);
 rectangle.overrideMimeType('text/plain; charset=utf-8');
 rectangle.onload = function() {
     if (rectangle.status == 200) {
@@ -226,6 +271,7 @@ rectangle.send(null);
 //격자 번호 표시하기
 var pointText1 = new XMLHttpRequest();
 pointText1.open('GET', '/jongdukjung/tools/data/sacheon_rectangle_center.txt', true);
+//pointText1.open('GET', '/tools/data/sacheon_rectangle_center.txt', true);
 pointText1.overrideMimeType('text/plain; charset=utf-8');
 pointText1.onload = function() {
     if (pointText1.status == 200) {
@@ -238,6 +284,7 @@ pointText1.send(null);
 // 폴리곤 표시하기
 var polygon1 = new XMLHttpRequest();
 polygon1.open('GET', '/jongdukjung/tools/data/sacheon_polygon.txt', true);
+//polygon1.open('GET', '/tools/data/sacheon_polygon.txt', true);
 polygon1.overrideMimeType('text/plain; charset=utf-8');
 polygon1.onload = function() {
     if (polygon1.status == 200) {
@@ -247,15 +294,6 @@ polygon1.onload = function() {
 };
 polygon1.send(null);
 
-// 폴리곤 이름 좌표 불러오기
-var pointText2 = new XMLHttpRequest();
-    pointText2.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
-    pointText2.overrideMimeType('text/plain; charset=utf-8');
-    pointText2.onload = function() {
-    if (pointText2.status == 200) {
-        var coordList2 = eval(pointText2.responseText);
-    };
-   };
 
 </script>
 </body>
