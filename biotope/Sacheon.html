@@ -233,8 +233,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     var latlng = mouseEvent.latLng;
     var currentLat = latlng.getLat();
     var currentLng = latlng.getLng();
-    currentLat=currentLat.toFixed(8);
-    currentLng=currentLng.toFixed(8);
+    currentLat=currentLat.toFixed(6);
+    currentLng=currentLng.toFixed(6);
     var message = currentLat + ', ';
     message += + currentLng;
     var link = 'https://map.kakao.com/link/to/목적지,'+ message;
@@ -248,8 +248,8 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     var lngMin=Math.floor((currentLng-lngDeg)*60);
     var prelngSec=Math.floor(((currentLng-lngDeg)*60-lngMin)*60);
     var lngSec=prelngSec.toFixed(2);
-    
-    message += " // " + latDeg +"° " + latMin +"′ " + latSec+"″, " + lngDeg +"° " + lngMin +"′ " + lngSec+"″"; 
+    const linesep = "\n\n"
+    message +=" // " + latDeg +"°" + latMin +"′" + latSec+"″, " + lngDeg +"°" + lngMin +"′" + lngSec+"″"; 
 console.log(latDeg)
     var resultDiv = document.getElementById('result'); 
     resultDiv.innerHTML = message;
