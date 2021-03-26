@@ -231,12 +231,29 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
     // 클릭한 위도, 경도 정보를 가져옵니다 
     var latlng = mouseEvent.latLng;
-    var message = latlng.getLat() + ', ';
-    message += + latlng.getLng();
-    var resultDiv = document.getElementById('result'); 
-    resultDiv.innerHTML = message;
+    var currentLat = latlng.getLat();
+    var currentLng = latlng.getLng();
+    currentLat=currentLat.toFixed(8);
+    currentLng=currentLng.toFixed(8);
+    var message = currentLat + ', ';
+    message += + currentLng;
     var link = 'https://map.kakao.com/link/to/목적지,'+ message;
     document.getElementById("link").setAttribute("href",link);
+    
+    var latDeg=Math.floor(currentLat);
+    var latMin=Math.floor((currentLat-latDeg)*60);
+    var prelatSec=Math.floor(((currentLat-latDeg)*60-latMin)*60);
+    var latSec=prelatSec.toFixed(2);
+    var lngDeg=Math.floor(currentLng);
+    var lngMin=Math.floor((currentLng-lngDeg)*60);
+    var prelngSec=Math.floor(((currentLng-lngDeg)*60-lngMin)*60);
+    var lngSec=prelngSec.toFixed(2);
+    
+    message += " // " + latDeg +"° " + latMin +"′ " + latSec+"″, " + lngDeg +"° " + lngMin +"′ " + lngSec+"″"; 
+console.log(latDeg)
+    var resultDiv = document.getElementById('result'); 
+    resultDiv.innerHTML = message;
+    
     displayMarker3(latlng);
 });
 
