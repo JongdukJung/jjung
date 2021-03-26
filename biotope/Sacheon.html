@@ -50,32 +50,38 @@ function displayMarker2() {
 }
 
 // 마커 표시하고 센터 이동하기
+var marker2= new kakao.maps.Marker();
 function displayMarker(locPosition) {
+    marker2.setMap(null);
     var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/current.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
-	var marker = new kakao.maps.Marker({  
+	marker2 = new kakao.maps.Marker({  
         map: map, 
         position: locPosition,
 		image: markerImage
     }); 
-	map.setCenter(locPosition);      
+	marker2.setMap(map);
+    map.setCenter(locPosition);      
 }
 
 // 센터이동없이 마커 표시하기
+var marker3= new kakao.maps.Marker();
 function displayMarker3(locPosition) {
+    marker3.setMap(null);
     var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/target.png'; // 마커이미지의 주소입니다   
     var imageSize = new kakao.maps.Size(12, 12); 
     var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
-	var marker = new kakao.maps.Marker({  
+	marker3 = new kakao.maps.Marker({  
         map: map, 
         position: locPosition,
 		image: markerImage
-    }); 
-    kakao.maps.event.addListener(marker, 'click', function() {
-        marker.setVisible(false);
-        marker = null;
     });
+    marker3.setMap(map);
+    //kakao.maps.event.addListener(marker, 'click', function() {
+    //    marker.setVisible(false);
+    //    marker = null;
+    //});
 }  
 
 // 사천시청으로 이동
