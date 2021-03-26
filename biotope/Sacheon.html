@@ -25,7 +25,7 @@
     <a id="link">길 찾기</a>
 </p>
 <p id="result"></p>
-    
+<p id="result2"></p>    
 
 <script>
 //==============================================================================================
@@ -239,6 +239,9 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     message += + currentLng;
     var link = 'https://map.kakao.com/link/to/목적지,'+ message;
     document.getElementById("link").setAttribute("href",link);
+
+    var resultDiv = document.getElementById('result'); 
+    resultDiv.innerHTML = message;
     
     var latDeg=Math.floor(currentLat);
     var latMin=Math.floor((currentLat-latDeg)*60);
@@ -249,11 +252,9 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     var prelngSec=Math.floor(((currentLng-lngDeg)*60-lngMin)*60);
     var lngSec=prelngSec.toFixed(2);
     const linesep = "\n\n"
-    message +=" // " + latDeg +"°" + latMin +"′" + latSec+"″, " + lngDeg +"°" + lngMin +"′" + lngSec+"″"; 
-console.log(latDeg)
-    var resultDiv = document.getElementById('result'); 
-    resultDiv.innerHTML = message;
-    
+    message2 =latDeg +"°" + latMin +"′" + latSec+"″, " + lngDeg +"°" + lngMin +"′" + lngSec+"″"; 
+    var result2Div = document.getElementById('result2'); 
+    result2Div.innerHTML = message2;
     displayMarker3(latlng);
 });
 
