@@ -259,11 +259,11 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     
     var latDeg=Math.floor(currentLat);
     var latMin=Math.floor((currentLat-latDeg)*60);
-    var prelatSec=Math.floor(((currentLat-latDeg)*60-latMin)*60);
+    var prelatSec=((currentLat-latDeg)*60-latMin)*60;
     var latSec=prelatSec.toFixed(2);
     var lngDeg=Math.floor(currentLng);
     var lngMin=Math.floor((currentLng-lngDeg)*60);
-    var prelngSec=Math.floor(((currentLng-lngDeg)*60-lngMin)*60);
+    var prelngSec=((currentLng-lngDeg)*60-lngMin)*60;
     var lngSec=prelngSec.toFixed(2);
     const linesep = "\n\n"
     message2 =latDeg +"°" + latMin +"′" + latSec+"″, " + lngDeg +"°" + lngMin +"′" + lngSec+"″"; 
