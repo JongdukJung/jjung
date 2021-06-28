@@ -108,6 +108,21 @@ function drawPolygon(polygonPaths2){
         polygon.setMap(map);
     };
 }
+// 지도에 표시할 다각형을 생성합니다
+function drawPolygon2(polygonPaths3){
+    for (var i = 0; i < polygonPaths3.length; i ++) {
+        var polygon = new kakao.maps.Polygon({
+            path: polygonPaths3[i], // 그려질 다각형의 좌표 배열입니다
+            strokeWeight: 1, // 선의 두께입니다
+            strokeColor: '#FF0000', // 선의 색깔입니다
+            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+            fillColor: '#A2FF99', // 채우기 색깔입니다
+            fillOpacity: 0 // 채우기 불투명도 입니다
+        });
+        // 지도에 다각형을 표시합니다
+        polygon.setMap(map);
+    };
+}
 //지도에 텍스트 표시하기
 function drawText(coordList){
     for (var i = 0; i < coordList.length; i ++) {
@@ -193,7 +208,31 @@ rectangle.onload = function() {
 };
 rectangle.send(null);
 
+//지도에 보호구역 표시하기
+var protection = new XMLHttpRequest();
+protection.open('GET', '/jongdukjung/tools/data/protection.txt', true);
+//rectangle.open('GET', '/tools/data/rectangle.txt', true);
+protection.overrideMimeType('text/plain; charset=utf-8');
+protection.onload = function() {
+    if (protection.status == 200) {
+        var polygonPaths3 = eval(protection.responseText);
+        drawPolygon2(polygonPaths3);
+    };
+};
+protection.send(null);
 
+//보호구역 번호 표시하기
+var pointText2 = new XMLHttpRequest();
+pointText2.open('GET', '/jongdukjung/tools/data/protection_title.txt', true);
+//pointText1.open('GET', '/tools/data/point1.txt', true);
+pointText2.overrideMimeType('text/plain; charset=utf-8');
+pointText2.onload = function() {
+    if (pointText2.status == 200) {
+        var coordList1 = eval(pointText2.responseText);
+        drawText(coordList1);
+    };
+};
+pointText2.send(null);
 //점과 텍스트 표시
 //var pointText2 = new XMLHttpRequest();
 //pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
