@@ -228,7 +228,7 @@ pointText2.open('GET', '/jongdukjung/tools/data/protection_title.txt', true);
 pointText2.overrideMimeType('text/plain; charset=utf-8');
 pointText2.onload = function() {
     if (pointText2.status == 200) {
-        var coordList1 = eval(pointText1.responseText);
+        var coordList1 = eval(pointText2.responseText);
         drawText(coordList1);
     };
 };
