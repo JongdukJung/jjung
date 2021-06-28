@@ -1,4 +1,4 @@
-[
+[]
 {title: '<h4>B001</h4>', latlng: new kakao.maps.LatLng(36.9654152988, 127.104824358)},
 {title: '<h4>B002</h4>', latlng: new kakao.maps.LatLng(36.9653945465, 127.126160167)},
 {title: '<h4>B003</h4>', latlng: new kakao.maps.LatLng(36.9653699606, 127.147495953)},
