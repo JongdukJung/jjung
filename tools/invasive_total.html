@@ -221,6 +221,20 @@ protection.onload = function() {
 };
 protection.send(null);
 
+//보호구역 번호 표시하기
+var pointText2 = new XMLHttpRequest();
+pointText2.open('GET', '/jongdukjung/tools/data/protection_title.txt', true);
+//pointText1.open('GET', '/tools/data/point1.txt', true);
+pointText2.overrideMimeType('text/plain; charset=utf-8');
+pointText2.onload = function() {
+    if (pointText2.status == 200) {
+        var coordList1 = eval(pointText1.responseText);
+        drawText2(coordList1);
+    };
+};
+pointText1.send(null);
+
+
 //점과 텍스트 표시
 //var pointText2 = new XMLHttpRequest();
 //pointText2.open('GET', '/jongdukjung/tools/data/point2.txt', true);
