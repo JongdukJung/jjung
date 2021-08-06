@@ -101,7 +101,7 @@
                 arrRow[0]='<em>'+arrRow[0]+'</em>';
                 //종소명 검토
                 var species = /\./;
-                var species2 = '(';
+                var species2 = /\(/;
                 var note="";
                 if(arrRow[1].match(species)){
                     note = note + " 종소명 검토 필요";
@@ -158,7 +158,7 @@
                                     "<td>"+sciname+"</td>"+
                                     "<td>"+note+"</td>"+
                                 "</tr>";
-                console.log(sciname);                
+                //console.log(sciname);                
                 sciname="";
                 note="";
                 }
