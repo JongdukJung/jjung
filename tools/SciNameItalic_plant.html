@@ -98,11 +98,11 @@
                 //학명 나누기
                 const arrRow = txtRows[i].split(" ");
                 //부분별 이탤릭 전환
-                arrRow[0]='<em>'+arrRow[0]+'<em>';
+                arrRow[0]='<em>'+arrRow[0]+'</em>';
                 //종소명 검토
                 var species = /\./;
                 var species2 = /\(/;
-                var note;
+                var note="";
                 if(arrRow[1].match(species)){
                     note = note + " 종소명 검토 필요";
                 }
@@ -113,8 +113,8 @@
                     arrRow[1]='<em>'+arrRow[1]+'<em>';
                 }
                 //종소명 이하 검토
-                var infrasp1='subsp.';
-                var infrasp2='ssp.';
+                var infrasp1=/subsp\./;
+                var infrasp2=/ssp\./;
                 var infrasp3='var.';
                 var infrasp4='v.';
                 var infrasp5='f.';
