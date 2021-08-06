@@ -55,8 +55,8 @@
         <div>
             <table id="resultTable" class="mb-10">
                 <colgroup>
-                    <col width="10" />
-                    <col width="90%" />
+                    <col width="50%" />
+                    <col width="50%" />
                 </colgroup>
                 <thead>
                     <tr>
@@ -110,7 +110,7 @@
                     note = note + " 종소명 검토 필요";
                 }
                 else {
-                    arrRow[1]='<em>'+arrRow[1]+'<em>';
+                    arrRow[1]='<em>'+arrRow[1]+'</em>';
                 }
                 //종소명 이하 검토
                 var infrasp1=/subsp\./;
@@ -121,7 +121,7 @@
                 var infrasp6='for.';
                 
                 for(var j in arrRow){
-   
+                    arrRow[j].trim();
                     if(arrRow[j].match(infrasp1)){
                         arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
 	                    note=note + ' 아종';
