@@ -101,7 +101,7 @@
                 arrRow[0]='<em>'+arrRow[0]+'</em>';
                 //종소명 검토
                 var species = /\./;
-                var species2 = /\(/;
+                var species2 = '(';
                 var note="";
                 if(arrRow[1].match(species)){
                     note = note + " 종소명 검토 필요";
@@ -112,40 +112,42 @@
                 else {
                     arrRow[1]='<em>'+arrRow[1]+'</em>';
                 }
+
                 //종소명 이하 검토
-                var infrasp1=/subsp\./;
-                var infrasp2=/ssp\./;
-                var infrasp3=/var\./;
-                var infrasp4=/v\./;
-                var infrasp5=/f\./;
-                var infrasp6=/for\./;
-                
+                var infrasp1='subsp.';
+                var infrasp2='ssp.';
+                var infrasp3='var.';
+                var infrasp4='v.';
+                var infrasp5='f.';
+                var infrasp6='for.';
+                var x=0;
                 for(var j in arrRow){
                     arrRow[j].trim();
-                    if(arrRow[j].match(infrasp1)){
-                        arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
+                    x++;
+                    if(arrRow[j]==infrasp1){
+                        arrRow[x]='<em>'+arrRow[x]+'</em>';
 	                    note=note + ' 아종';
                     }
-                    if(arrRow[j].match(infrasp2)){
-                        arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
+                    else if(arrRow[j]==infrasp2){
+                        arrRow[x]='<em>'+arrRow[x]+'</em>';
 	                    arrRow[j] = infrasp1;
                         note=note + ' 아종';
                     }
-                    if(arrRow[j].match(infrasp3)){
-                        arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
+                    else if(arrRow[j]==infrasp3){
+                        arrRow[x]='<em>'+arrRow[x]+'</em>';
 	                    note=note + ' 변종';
                     }
-                    if(arrRow[j].match(infrasp4)){
-                        arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
+                    else if(arrRow[j]==infrasp4){
+                        arrRow[x]='<em>'+arrRow[x]+'</em>';
 	                    arrRow[j] = infrasp3;
                         note=note + ' 변종';
                     }
-                    if(arrRow[j].match(infrasp5)){
-                        arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
+                    else if(arrRow[j]==infrasp5){
+                        arrRow[x]='<em>'+arrRow[x]+'</em>';
 	                    note=note + ' 품종';
                     }
-                    if(arrRow[j].match(infrasp6)){
-                        arrRow[j+1]='<em>'+arrRow[j+1]+'</em>';
+                    else if(arrRow[j]==infrasp6){
+                        arrRow[x]='<em>'+arrRow[x]+'</em>';
                         arrRow[j] = infrasp5;
 	                    note=note + ' 품종';
                     }
@@ -156,6 +158,7 @@
                                     "<td>"+sciname+"</td>"+
                                     "<td>"+note+"</td>"+
                                 "</tr>";
+                console.log(sciname);                
                 sciname="";
                 note="";
                 }
