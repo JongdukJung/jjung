@@ -101,11 +101,11 @@
                 //부분별 이탤릭 전환
                 
                 var word1 = /\./;
-                var word2 = /^A-Z/;
-                var word3 = /^1-9/;
+                var word2 = /^[A-Z]/;
+                var word3 = /[1-9]/;
                 var word4 = /^\(/;
                 var x=0;
-                
+                var note="";
                 for(var j in arrRow){
                     arrRow[j].trim();
                     if(arrRow[j].match(word1)){
@@ -115,16 +115,16 @@
                             arrRow[j]='<em>'+arrRow[j]+'</em>';
                         }
                     }
-                    else if(arrRow[j].match(word3)){}
-                    else if(arrRow[j]=='and'){}
-                    else if(arrRow[j]=='ex'){}
-                    else if(arrRow[j]=='&'){}
-                    else if(arrRow[j]=='et'){}
+                    else if(arrRow[j].match(word3)){x++; break;}
+                    else if(arrRow[j]=='and'){x++; break;}
+                    else if(arrRow[j]=='ex'){x++; break;}
+                    else if(arrRow[j]=='&'){x++; break;}
+                    else if(arrRow[j]=='et'){x++; break;}
                     else if(arrRow[j].match(word4)){
                         if(x==1){
-                            arrRow[j].replace(/\(/,'');
-                            arrRow[j].replace(/\)/,'');
-                            arrRow[j]='(<em>'+$data[$i]+'</em>)';
+                            arrRow[j]=arrRow[j].replace('(','');
+                            arrRow[j]=arrRow[j].replace(')','');
+                            arrRow[j]='(<em>'+arrRow[j]+'</em>)';
                         }
                     }
                     else{
