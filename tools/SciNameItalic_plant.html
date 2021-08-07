@@ -100,10 +100,18 @@
                 const arrRow = txtRows[i].split(" ");
                 
                 var note="";
-                var otherch = /[ㄱ-ㅎㅏ-ㅣ가-힣0-9!?@#$%^&*():;+-=~{}<>\_\[\]\|\\\"\'\,\.\/\`\\]/;
+                var otherch = /[ㄱ-ㅎㅏ-ㅣ가-힣0-9!?@#$%^&*():;+=~{}<>\_\[\]\|\\\"\'\,\.\/\`\\]/;
                 var upchstart = /^[A-Z]/;
                 var lowchstart = /^[a-z]/;
 
+                var infrasp1='subsp.';
+                var infrasp2='ssp.';
+                var infrasp3='var.';
+                var infrasp4='v.';
+                var infrasp5='f.';
+                var infrasp6='for.';
+                var infrasp7='×';
+                var infrasp8='×';
 
                 
                 //부분별 이탤릭 전환
@@ -124,18 +132,16 @@
                 
                 //종소명 검토
                 if(arrRow[1]){             
-                    if(arrRow[1].match(otherch)){note = note + '종소명 비라틴문자 포함;';arrRow[1] = '<b>'+arrRow[1]+'</b>';}
+                    if(arrRow[1]==infrasp7){}
+                    else if(arrRow[1]==infrasp8){}
+                    else if(arrRow[1].match(otherch)){note = note + '종소명 비라틴문자 포함;';arrRow[1] = '<b>'+arrRow[1]+'</b>';}
                     else if(arrRow[1].match(upchstart)){note = note + '종소명 대문자 시작;';arrRow[1] = '<b>'+arrRow[1]+'</b>';}
                     else {arrRow[1]='<em>'+arrRow[1]+'</em>';}
                 }
 
                 //종소명 이하 검토
-                var infrasp1='subsp.';
-                var infrasp2='ssp.';
-                var infrasp3='var.';
-                var infrasp4='v.';
-                var infrasp5='f.';
-                var infrasp6='for.';
+                
+
                 var x=0;
                 for(var j in arrRow){
                     arrRow[j].trim();
@@ -174,19 +180,35 @@
                     }
                     else if(arrRow[j]==infrasp5){
                         if(arrRow[x]){
-                            if(arrRow[x].match(otherch)){note = note + '품종명 비라틴문자 포함;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
-                            else if(arrRow[x].match(upchstart)){note = note + '품종명 대문자 시작;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            if(arrRow[x].match(otherch)){note = note + '품종명 비라틴문자 포함(명명자 가능);';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            else if(arrRow[x].match(upchstart)){note = note + '품종명 대문자 시작(명명자 가능);';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
                             else {arrRow[x]='<em>'+arrRow[x]+'</em>';}
                         }
-                        else{note = note + '품종명 없음;';}
+                        else{note = note + '품종명 없음(명명자 가능);';}
                     }
                     else if(arrRow[j]==infrasp6){
                         if(arrRow[x]){
-                            if(arrRow[x].match(otherch)){note = note + '품종명 비라틴문자 포함;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
-                            else if(arrRow[x].match(upchstart)){note = note + '품종명 대문자 시작;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            if(arrRow[x].match(otherch)){note = note + '품종명 비라틴문자 포함(명명자 가능);';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            else if(arrRow[x].match(upchstart)){note = note + '품종명 대문자 시작(명명자 가능);';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
                             else {arrRow[x]='<em>'+arrRow[x]+'</em>'; arrRow[j] = infrasp5;}
                         }
-                        else{note = note + '품종명 없음;';}
+                        else{note = note + '품종명 없음(명명자 가능);';}
+                    }
+                    else if(arrRow[j]==infrasp7){
+                        if(arrRow[x]){
+                            if(arrRow[x].match(otherch)){note = note + '잡종명 비라틴문자 포함;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            else if(arrRow[x].match(upchstart)){note = note + '잡종명 대문자 시작;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            else {arrRow[x]='<em>'+arrRow[x]+'</em>'; arrRow[j] = infrasp7;}
+                        }
+                        else{note = note + '잡종명 없음;';}
+                    }
+                    else if(arrRow[j]==infrasp8){
+                        if(arrRow[x]){
+                            if(arrRow[x].match(otherch)){note = note + '잡종명 비라틴문자 포함;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            else if(arrRow[x].match(upchstart)){note = note + '잡종명 대문자 시작;';arrRow[x] = '<b>'+arrRow[x]+'</b>';}
+                            else {arrRow[x]='<em>'+arrRow[x]+'</em>'; arrRow[j] = infrasp7;}
+                        }
+                        else{note = note + '잡종명 없음;';}
                     }
                 }
                 var sciname = arrRow.join(" ");
