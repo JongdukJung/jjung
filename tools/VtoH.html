@@ -98,6 +98,8 @@
                 //빈 행 제거, 중복데이터 제거
                 txtRows[i].trim();
                 if(txtRows[i] == "") continue;
+                var j=i-1;
+                
                 if(txtRows[i] == txtRows[i-1]) continue;
                 //열 분리
                 
