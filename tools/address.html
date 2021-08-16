@@ -5,8 +5,8 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
     <title>좌표를 주소로 변환</title>
     <style>
-		header {padding: 10px; font-size: 20px; background: #F2F2F2;}
-		article {padding: 10px; font-size: 14px;}
+		header {padding: 0px; font-size: 20px; height:40px; background: #F2F2F2;}
+		article {padding: 3px; font-size: 14px;}
 
         table {
             width: 100%;
@@ -32,14 +32,14 @@
         textarea#coordList{
             min-width: 60%;
             max-width: 60%;
-            min-height: 100px;
+            min-height: 80px;
             max-height: 200px;
             font-size: 12px;
         }
 
-#container {overflow:hidden;height:800px;position:relative;}
-#mapWrapper {width:100%;height:800px;z-index:1;}
-#rvWrapper {width:50%;height:800px;top:0;right:0;position:absolute;z-index:0;}
+#container {overflow:hidden;height:590px;position:relative;}
+#mapWrapper {width:100%;height:590px;z-index:1;}
+#rvWrapper {width:50%;height:590px;top:0;right:0;position:absolute;z-index:0;}
 #container.view_roadview #mapWrapper {width: 50%;}
 #roadviewControl {position:absolute;top:5px;left:5px;width:42px;height:42px;z-index: 1;cursor: pointer; background: url(https://t1.daumcdn.net/localimg/localimages/07/2018/pc/common/img_search.png) 0 -450px no-repeat;}
 #roadviewControl.active {background-position:0 -350px;}
@@ -198,15 +198,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent){
         const TABLE_ID = "resultTable"
         //html 로드완료 이벤트 설정
         //document.addEventListener("DOMContentLoaded", contentLoadedHandler);
- //검색버튼 이벤트 함수
- function searchButtonClickHandler(){
-            var coordListTxt = document.getElementById("coordList").value;
 
-            //텍스트 -> Map Array
-            coordList = coordListParse(coordListTxt);
-            geocodingAndResultDisplay(coordList);
-
-        }
 
  //클릭한 지점 위경도 표시하기
  kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
@@ -216,14 +208,10 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent){
     var currentLng = latlng.getLng();
     currentLat=currentLat.toFixed(6);
     currentLng=currentLng.toFixed(6);
-    var message = currentLat + ', ';
-    message += + currentLng;
-    var resultDiv = document.getElementById('result'); 
-    resultDiv.innerHTML = message;
+    var message = currentLat + ', ' + currentLng;
+ 
 
- //   var link = 'https://map.kakao.com/link/to/목적지,'+ message;
- //   document.getElementById("link").setAttribute("href",link);
- var latDeg=Math.floor(currentLat);
+    var latDeg=Math.floor(currentLat);
     var latMin=Math.floor((currentLat-latDeg)*60);
     var prelatSec=((currentLat-latDeg)*60-latMin)*60;
     var latSec=prelatSec.toFixed(2);
@@ -232,11 +220,40 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent){
     var prelngSec=((currentLng-lngDeg)*60-lngMin)*60;
     var lngSec=prelngSec.toFixed(2);
     const linesep = "\n\n"
-    message2 =latDeg +"°" + latMin +"′" + latSec+"″, " + lngDeg +"°" + lngMin +"′" + lngSec+"″"; 
-    var result2Div = document.getElementById('result2'); 
-    result2Div.innerHTML = message2;
+    message +=';  ' + latDeg +"°" + latMin +"′" + latSec+"″, " + lngDeg +"°" + lngMin +"′" + lngSec+"″"; 
+ 
+    //result=geocoder.coord2Address(latlng.getLng(), latlng.getLat(), result);
+    //var message2= result[0].address.address_name;
+    var message2 = searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status){
+        if(status === kakao.maps.services.Status.OK){
+            var message2= result[0].address.address_name;
+        }
+        console.log(message2); 
+    
+        message += ';  ' + message2;
+    var resultDiv = document.getElementById('result'); 
+    resultDiv.innerHTML = message;
+
+ //       return message2;
+    });
+  
+     //message += ';  ' + message2;
+    //var resultDiv = document.getElementById('result'); 
+    //resultDiv.innerHTML = message;
+    
     displayMarker3(latlng);
 });
+
+
+ //검색버튼 이벤트 함수
+ function searchButtonClickHandler(){
+            var coordListTxt = document.getElementById("coordList").value;
+
+            //텍스트 -> Map Array
+            coordList = coordListParse(coordListTxt);
+            geocodingAndResultDisplay(coordList);
+
+        }
 
 // 센터이동없이 마커 표시하기
 function displayMarker3(locPosition) {
@@ -253,58 +270,46 @@ function displayMarker3(locPosition) {
         marker = null;
     });
 }  
-
-
        
 
-        //테이블로 출력
-        function displaycoordList(coordList){
-            var tableContainer = document.querySelector("#"+TABLE_ID+">tbody");
-
-            console.log(coordList);
-            var tableRows = "";
-            for(var i in coordList){
-
-                var lat = coordList[i].y, // 위도
-                    lon = coordList[i].x; // 경도
-                var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 얻어온 좌표로 생성합니다
-                var text2= "'"+coordList[i].index+"'";
-
-                tableRows +=    "<tr>"+
-                                    "<td>"+coordList[i].index+"</td>"+
-                                    "<td>"+coordList[i].y+"</td>"+
-                                    "<td>"+coordList[i].x+"</td>"+
-                                    "<td>"+coordList[i].addr+"</td>"+
-                                    //"<td>"+coordList[i].roadAddr+"</td>"+
-                                    "<td><button onclick='displayMarker("+lat+","+lon+")'>위치표시</button> </td>"+
-                                "</tr>";
-                // 지도에 출력
-                var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/target.png';
-                var imageSize = new kakao.maps.Size(12, 12); 
-                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
-	              var marker = new kakao.maps.Marker({  
-                    map: map, 
-                    position: locPosition,
-		                image: markerImage,
-                })
-
-                var customOverlay = new kakao.maps.CustomOverlay({
-                                    position: locPosition,
-                                    content: text2
-                });
-                customOverlay.setMap(map);
-                
-
-            }
-            tableContainer.innerHTML = tableRows;
-        
-
-        }
+//테이블로 출력
+function displaycoordList(coordList){
+    var tableContainer = document.querySelector("#"+TABLE_ID+">tbody");
+    //console.log(coordList);
+    var tableRows = "";
+    for(var i in coordList){
+        var lat = coordList[i].y, // 위도
+            lon = coordList[i].x; // 경도
+        var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 얻어온 좌표로 생성합니다
+        var text2= "'"+coordList[i].index+"'";
+        tableRows +=    "<tr>"+
+                "<td>"+coordList[i].index+"</td>"+
+                "<td>"+coordList[i].y+"</td>"+
+                "<td>"+coordList[i].x+"</td>"+
+                "<td>"+coordList[i].addr+"</td>"+
+                //"<td>"+coordList[i].roadAddr+"</td>"+
+                "<td><button onclick='displayMarker("+lat+","+lon+")'>위치표시</button> </td>"+
+                "</tr>";
+        // 지도에 출력
+        var imageSrc = 'https://jongdukjung.github.io/jongdukjung/biotope/target.png';
+        var imageSize = new kakao.maps.Size(12, 12); 
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 	
+	    var marker = new kakao.maps.Marker({  
+            map: map, 
+            position: locPosition,
+	    	image: markerImage,
+        })
+        var customOverlay = new kakao.maps.CustomOverlay({
+            position: locPosition,
+            content: text2
+        });
+        customOverlay.setMap(map);
+    }
+    tableContainer.innerHTML = tableRows;
+}
 
 
-
-
-        //text -> Map Array
+        //text -> Map Array 좌표배열로 바꾸기
         function coordListParse(coordListTxt){
             var txtRows = coordListTxt.split("\n");
             var resultList = [];
@@ -330,16 +335,15 @@ function displayMarker3(locPosition) {
             var count = 0;
             const i = 0;
             for(const i in coordList){
-                console.log(coordList[i], i);
+                //console.log(coordList[i], i);
                 var coords = new kakao.maps.LatLng(coordList[i].y, coordList[i].x)
                 searchDetailAddrFromCoords(coords, function(result, status){
-                    console.log(result, i);
+                    //console.log(result, i);
                     //정상처리되었을 때
                     if(status === kakao.maps.services.Status.OK){
                         //coordList[i].roadAddr = result[0].road_address.address_name;
                         coordList[i].addr = result[0].address.address_name;
-                        console.log(coordList[i],i);
-                    
+                    //    console.log(coordList[i],i);
                     }
                     count++;
 
@@ -469,6 +473,5 @@ function closeRoadview() {
        
     </script>
     <p id="result"></p>
-    <p id="result2"></p>
 </body>
 </html>
