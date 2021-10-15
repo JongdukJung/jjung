@@ -178,7 +178,7 @@ function polygonNameClickHandler(){
 
 // 폴리곤 이름 좌표 불러오기
 var pointText3 = new XMLHttpRequest();
-pointText3.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center.txt', true);
+pointText3.open('GET', '/jongdukjung/tools/data/sacheon_polygon_center2.txt', true);
 //pointText3.open('GET', '/tools/data/sacheon_polygon_center2.txt', true);
 pointText3.overrideMimeType('text/plain; charset=utf-8');
 pointText3.onload = function() {
@@ -314,7 +314,7 @@ pointText1.send(null);
 
 // 폴리곤 표시하기
 var polygon1 = new XMLHttpRequest();
-polygon1.open('GET', '/jongdukjung/tools/data/sacheon_polygon.txt', true);
+polygon1.open('GET', '/jongdukjung/tools/data/sacheon_polygon2.txt', true);
 //polygon1.open('GET', '/tools/data/sacheon_polygon2.txt', true);
 polygon1.overrideMimeType('text/plain; charset=utf-8');
 polygon1.onload = function() {
