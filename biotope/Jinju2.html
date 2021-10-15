@@ -22,8 +22,8 @@
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(35.20892404465093, 127.95351314400226), // 지도의 중심좌표(A구역 중심)
-        level: 6 // 지도의 확대 레벨
+        center: new kakao.maps.LatLng(35.20601843572981, 128.13423137558365), // 지도의 중심좌표(A구역 중심)
+        level: 3 // 지도의 확대 레벨
     };  
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
@@ -51,7 +51,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
 // A구역 중심시로 이동
 function chungju(){
-var locPosition = new kakao.maps.LatLng(35.20892404465093, 127.95351314400226); // 지도의 중심좌표(A구역 중심)
+var locPosition = new kakao.maps.LatLng(35.20601843572981, 128.13423137558365); // 지도의 중심좌표(A구역 중심)
 map.setCenter(locPosition);   
 }
 
